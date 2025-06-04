@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ambiente
+.env
+
+# Editor/IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Produção
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# Banco de dados local (ex: SQLite, se usar)
+*.sqlite
+*.db
+
+# Swagger output (caso gere arquivos via CLI)
+swagger.json
+swagger.yaml
