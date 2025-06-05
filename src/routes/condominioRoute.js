@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const CondominioController = require('../controllers/CondominioController')
+const UnidadeController = require('../controllers/UnidadeController')
 
 /**
  * @swagger
@@ -88,8 +89,42 @@ const CondominioController = require('../controllers/CondominioController')
  *       200:
  *         description: Condomínio removido
  */
+/**
+ * @swagger
+ * /condominios/{id}/unidades:
+ *   get:
+ *     summary: Lista todas as unidades de um condomínio específico
+ *     tags:
+ *       - Condomínios
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID do condomínio
+ *     responses:
+ *       200:
+ *         description: Lista de unidades retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   numero:
+ *                     type: string
+ *                   condominioId:
+ *                     type: integer
+ *       500:
+ *         description: Erro ao buscar unidades
+ */
 
 router.get('/', CondominioController.listar)
+router.get('/:id/unidades', CondominioController.listarUnidades)
 router.post('/', CondominioController.criar)
 router.put('/:id', CondominioController.atualizar)
 router.delete('/:id', CondominioController.deletar)

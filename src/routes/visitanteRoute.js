@@ -4,12 +4,11 @@
  *   name: Visitantes
  *   description: Endpoints para gerenciamento de visitantes
  */
-
 /**
  * @swagger
  * /visitantes:
  *   post:
- *     summary: Cadastrar um novo visitante
+ *     summary: Cadastra um novo visitante
  *     tags: [Visitantes]
  *     requestBody:
  *       required: true
@@ -17,18 +16,66 @@
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - nome
+ *               - documento
  *             properties:
  *               nome:
  *                 type: string
+ *                 example: João Silva
  *               documento:
  *                 type: string
+ *                 example: 123.456.789-00
  *               telefone:
  *                 type: string
+ *                 example: (11) 98765-4321
  *     responses:
  *       201:
  *         description: Visitante criado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 nome:
+ *                   type: string
+ *                 documento:
+ *                   type: string
+ *                 telefone:
+ *                   type: string
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *                 updatedAt:
+ *                   type: string
+ *                   format: date-time
+ *       400:
+ *         description: Documento duplicado ou erro de validação
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Erro ao criar visitante
+ *                 details:
+ *                   type: string
+ *                   example: Já existe um visitante com esse documento.
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                 details:
+ *                   type: string
  */
-
 /**
  * @swagger
  * /visitantes:
@@ -39,7 +86,6 @@
  *       200:
  *         description: Lista de visitantes
  */
-
 /**
  * @swagger
  * /visitantes/{id}:
@@ -72,7 +118,6 @@
  *       404:
  *         description: Visitante não encontrado
  */
-
 /**
  * @swagger
  * /visitantes/{id}:

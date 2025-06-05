@@ -80,27 +80,9 @@ const UnidadeController = require('../controllers/UnidadeController')
  *       200:
  *         description: Unidade removida com sucesso
  */
-/**
- * @swagger
- * /condominios/{condominioId}/unidades:
- *   get:
- *     summary: Lista todas as unidades de um condomínio
- *     tags: [Unidades]
- *     parameters:
- *       - in: path
- *         name: condominioId
- *         required: true
- *         schema:
- *           type: integer
- *         description: ID do condomínio
- *     responses:
- *       200:
- *         description: Lista de unidades
- */
 
 router.post('/', UnidadeController.criar)
 router.put('/:id', UnidadeController.atualizar)
 router.delete('/:id', UnidadeController.deletar)
-router.get('/condominios/:condominioId/unidades', UnidadeController.listarPorCondominio)
 
 module.exports = router

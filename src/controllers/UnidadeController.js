@@ -2,15 +2,6 @@ const Unidade = require('../models/Unidade')
 const Condominio = require('../models/Condominio')
 
 module.exports = {
-  async listarPorCondominio(req, res) {
-    try {
-      const { condominioId } = req.params
-      const unidades = await Unidade.findAll({ where: { condominioId }})
-      res.json(unidades)
-    } catch (err) {
-      res.status(500).json({ error: 'Erro ao listar unidades', details: err.message })
-    }
-  },
   async criar(req, res) {
     try {
       const { numero, bloco, condominioId } = req.body

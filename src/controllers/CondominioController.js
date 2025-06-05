@@ -1,4 +1,5 @@
 const Condominio = require('../models/Condominio')
+const Unidade = require('../models/Unidade')
 
 module.exports = {
   async listar(req, res) {
@@ -7,6 +8,15 @@ module.exports = {
       res.json(condominio)
     }catch (err) {
       res.status(500).json({ error: 'Error ao listar condomínios' })
+    }
+  },
+  async listarUnidades(req, res) {
+    try {
+      const { id } = req.params
+      const unidades = await Unidade.findAll({ where: { condominioId: id } })
+      res.json(unidades)
+    } catch (err) {
+      res.status(500).json({ error: 'Error ao listar unidades' })
     }
   },
   async criar(req, res) {
