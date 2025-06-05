@@ -8,7 +8,7 @@ const routes = require('./routes')
 const db = require('./database')
 
 const sequelize = require('./database')
-const acessoRoutes = require('./routes/acesso')
+const acessoRoutes = require('./routes/acessoRoute')
 const visitanteRoutes = require('./routes/visitanteRoute')
 const condominioRoutes = require('./routes/condominioRoute')
 const unidadeRoutes = require('./routes/unidadeRoute')

@@ -5,7 +5,7 @@ module.exports = {
     try {
       const condominio = await Condominio.findAll()
       res.json(condominio)
-    }catch (error) {
+    }catch (err) {
       res.status(500).json({ error: 'Error ao listar condomínios' })
     }
   },
@@ -14,7 +14,7 @@ module.exports = {
       const { nome, endereco } = req.body
       const condominio = await Condominio.create({ nome, endereco })
       res.status(201).json(condominio)
-    } catch (error) {
+    } catch (err) {
       res.status(500).json({ error: 'Error ao criar condomínios.' })
     }
   },
@@ -29,8 +29,8 @@ module.exports = {
       }
       await condominio.update({ nome, endereco })
       res.json(condominio)
-    }catch (error) {
-      res.status(500).json({ error: 'Erro ao atualizar condominio' })
+    }catch (err) {
+      res.status(500).json({ error: 'Erro ao atualizar condominio', details: err.message })
     }
   },
   async deletar(req, res) {
@@ -42,8 +42,8 @@ module.exports = {
       }
       await condominio.destroy()
       res.json({ message: 'Condomínio removido com sucesso'})
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao deletar condomínio'})
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao deletar condomínio', details: err.message })
     }
   }
 }

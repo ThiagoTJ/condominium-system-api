@@ -7,8 +7,8 @@ module.exports = {
       const { condominioId } = req.params
       const unidades = await Unidade.findAll({ where: { condominioId }})
       res.json(unidades)
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao listar unidades' })
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao listar unidades', details: err.message })
     }
   },
   async criar(req, res) {
@@ -20,8 +20,8 @@ module.exports = {
       }
       const unidade = await Unidade.create({ numero, bloco, condominioId })
       res.status(201).json(unidade) 
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao criar unidade' })
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao criar unidade', details: err.message })
     }
   },
   async atualizar(req, res) {
@@ -35,8 +35,8 @@ module.exports = {
       }
       await unidade.update({ numero, bloco })
       res.json(unidade)
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao atualizar unidade'})
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao atualizar unidade', details: err.message})
     }
   },
   async deletar(req, res) {
@@ -48,8 +48,8 @@ module.exports = {
       }
       await unidade.destroy()
       res.json({ message: 'Unidade removida com sucesso'})
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao deletar unidade' })
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao deletar unidade', details: err.message })
     }
   }
 }
