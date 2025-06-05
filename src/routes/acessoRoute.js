@@ -8,13 +8,13 @@ const AcessoController = require('../controllers/AcessoController')
  *   name: Acessos
  *   description: Endpoints para controle de entrada e saída de visitantes
  */
-
 /**
  * @swagger
  * /acesso/entrada:
  *   post:
- *     summary: Libera a entrada de um visitante
- *     tags: [Acessos]
+ *     summary: Libera a entrada de um visitante em uma unidade de um condomínio
+ *     tags:
+ *       - Acessos
  *     requestBody:
  *       required: true
  *       content:
@@ -23,15 +23,20 @@ const AcessoController = require('../controllers/AcessoController')
  *             type: object
  *             required:
  *               - visitanteId
+ *               - condominioId
  *               - unidadeId
  *             properties:
  *               visitanteId:
+ *                 type: integer
+ *               condominioId:
  *                 type: integer
  *               unidadeId:
  *                 type: integer
  *     responses:
  *       201:
- *         description: Entrada registrada
+ *         description: Acesso registrado
+ *       400:
+ *         description: Dados inválidos ou relação inconsistente
  */
 /**
  * @swagger
@@ -51,7 +56,7 @@ const AcessoController = require('../controllers/AcessoController')
  */
 /**
  * @swagger
- * /acesso/unidade/{unidadeId}:
+ * /acesso/unidades/{unidadeId}:
  *   get:
  *     summary: Lista movimentações por unidade
  *     tags: [Acessos]
@@ -64,6 +69,8 @@ const AcessoController = require('../controllers/AcessoController')
  *     responses:
  *       200:
  *         description: Lista de acessos
+ *       404:
+ *         description: Unidade não encontrada
  */
 
 router.post('/entrada', AcessoController.registrarEntrada)

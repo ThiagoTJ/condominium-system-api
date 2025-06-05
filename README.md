@@ -13,11 +13,10 @@ API RESTful desenvolvida como parte de um desafio técnico para gerenciar o flux
 - [x] `GET /condominios/{id}/unidades`: Listar unidades por condomínio.
 - [x] `GET /condominios/relacao/tudo`: Mostrar relação entre condomínios e suas unidades.
 
-### 🔜 Controle de Acesso (Em desenvolvimento)
-- [ ] Liberar entrada de visitante.
-- [ ] Listar movimentações por unidade.
-- [ ] Registrar saída de visitante.
-
+### ✅ Controle de Acesso
+- [x] `POST /acesso`: Liberar entrada de visitante.
+- [x] `GET /unidades/{id}/acessos`: Listar movimentações por unidade.
+- [x] `PUT /acesso/{id}/saida`: Registrar saída de visitante.
 ---
 
 ## 🚀 Como executar o projeto
