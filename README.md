@@ -26,11 +26,27 @@ API RESTful desenvolvida como parte de um desafio técnico para gerenciar o flux
 - Node.js v18+
 - npm
 - (Opcional) Banco de dados relacional (MySQL/PostgreSQL) ou não-relacional
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- Node.js
+- Express.js
+- Sequelize (ORM)
+- SQLite (banco de dados leve e local)
+- Swagger (documentação de API)
+- Nodemon (ambiente de desenvolvimento)
+- Git
 
 ### Instalação
 ```bash
 git clone https://github.com/ThiagoTJ/condominium-system-api
 cd condominium-system-api
 npm install
+
 npm run dev
 ```
+
+### ✅ Swagger Documentation
+- [x] Documentação interativa disponível em:  
+  👉 [`/api-docs`](http://localhost:3000/api-docs)
