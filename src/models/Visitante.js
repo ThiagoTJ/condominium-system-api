@@ -2,9 +2,18 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../database')
 
 const Visitante = sequelize.define('Visitante', {
-  nome: DataTypes.STRING,
-  documento: DataTypes.STRING,
-  telefone: DataTypes.STRING
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  documento:{ 
+    type: DataTypes.STRING, 
+    allowNull: false, 
+    unique: true, 
+  },
+  telefone: { 
+    type: DataTypes.STRING 
+  },
 })
 
 module.exports = Visitante

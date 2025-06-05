@@ -2,8 +2,13 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../database')
 
 const Condominio = sequelize.define('Condominio', {
-  nome: DataTypes.STRING,
-  endereco: DataTypes.STRING
+  nome: { 
+    type: DataTypes.STRING, 
+    allowNull: false, 
+  },
+  endereco: { 
+    type: DataTypes.STRING
+  }
 })
 
 module.exports = Condominio

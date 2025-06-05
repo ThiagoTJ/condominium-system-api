@@ -1,12 +1,15 @@
-const express = require('express')
-const router = express.Router()
-const Visitante = require('../models/Visitante')
+/**
+ * @swagger
+ * tags:
+ *   name: Visitantes
+ *   description: Gerenciamento de visitantes
+ */
 
 /**
  * @swagger
  * /visitantes:
  *   post:
- *     summary: Cadastra um novo visitante
+ *     summary: Cadastrar um novo visitante
  *     tags: [Visitantes]
  *     requestBody:
  *       required: true
@@ -14,9 +17,6 @@ const Visitante = require('../models/Visitante')
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - nome
- *               - documento
  *             properties:
  *               nome:
  *                 type: string
@@ -28,46 +28,33 @@ const Visitante = require('../models/Visitante')
  *       201:
  *         description: Visitante criado com sucesso
  */
-router.post('/', async (req, res) => {
-  const visitante = await Visitante.create(req.body)
-  res.json(visitante)
-})
-
-/**
- * @swagger
- * tags:
- *   name: Visitantes
- *   description: Gerenciamento de visitantes
- */
 
 /**
  * @swagger
  * /visitantes:
  *   get:
- *     summary: Lista todos os visitantes
+ *     summary: Listar todos os visitantes
  *     tags: [Visitantes]
  *     responses:
  *       200:
  *         description: Lista de visitantes
  */
-router.get('/', async (req, res) => {
-  const visitantes = await Visitante.findAll()
-  res.json(visitantes)
-})
 
 /**
  * @swagger
  * /visitantes/{id}:
  *   put:
- *     summary: Atualiza os dados de um visitante
+ *     summary: Atualizar um visitante
  *     tags: [Visitantes]
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: integer
+ *         required: true
+ *         description: ID do visitante
  *     requestBody:
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -80,35 +67,40 @@ router.get('/', async (req, res) => {
  *               telefone:
  *                 type: string
  *     responses:
- *       204:
- *         description: Visitante atualizado com sucesso
+ *       200:
+ *         description: Visitante atualizado
+ *       404:
+ *         description: Visitante não encontrado
  */
-router.put('/:id', async (req, res) => {
-  const {id} = req.params
-  await Visitante.update(req.body, { where: { id } })
-  res.sendStatus(204)
-})
 
 /**
  * @swagger
  * /visitantes/{id}:
  *   delete:
- *     summary: Remove um visitante
+ *     summary: Remover um visitante
  *     tags: [Visitantes]
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: integer
+ *         required: true
+ *         description: ID do visitante
  *     responses:
  *       204:
- *         description: Visitante removido com sucesso
+ *         description: Visitante removido
+ *       404:
+ *         description: Visitante não encontrado
  */
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params
-  await Visitante.destroy({ where: { id } })
-  res.sendStatus(204)
-})
+
+const express = require('express')
+const VisitanteController = require('../controllers/VisitanteController')
+
+const router = express.Router()
+
+router.post('/', VisitanteController.create)
+router.get('/', VisitanteController.index)
+router.put('/:id', VisitanteController.update)
+router.delete('/:id', VisitanteController.delete)
 
 module.exports = router
