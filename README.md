@@ -13,15 +13,17 @@ API RESTful desenvolvida como parte de um desafio técnico para gerenciar o flux
 - [x] `POST /condominios`: Criar novo condomínio.
 - [x] `PUT /condominios/{id}`: Atualizar condomínio existente.
 - [x] `DELETE /condominios/{id}`: Remover condomínio do sistema.
+- [x] `GET /condominios/{id}/unidades`: Listar unidades de um condomínio.
 
 #### 🧱 Unidades
-- [x] `GET /condominios/{id}/unidades`: Listar unidades de um condomínio específico.
-- [x] `GET /condominios/relacao/tudo`: Listar todos os condomínios com suas unidades associadas.
+- [x] `POST /unidades`: Criar uma nova unidade (vinculada a um condomínio).
+- [x] `PUT /unidades/{id}`: Atualizar dados de uma unidade.
+- [x] `DELETE /unidades/{id}`: Remover uma unidade específica.
 
 ### ✅ Controle de Acesso
-- [x] `POST /acesso`: Liberar entrada de visitante.
-- [x] `GET /unidades/{id}/acessos`: Listar movimentações por unidade.
-- [x] `PUT /acesso/{id}/saida`: Registrar saída de visitante.
+- [x] `POST /acesso/entrada`: Liberar entrada de um visitante em uma unidade de um condomínio.
+- [x] `PATCH /acesso/saida/{id}`: Registrar saída de visitante.
+- [x] `GET /acesso/unidades/{unidadeId}`: Lista movimentação por unidade.
 ---
 
 ## 🚀 Como executar o projeto
