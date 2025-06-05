@@ -10,6 +10,8 @@ const db = require('./database')
 const sequelize = require('./database')
 const acessoRoutes = require('./routes/acesso')
 const visitanteRoutes = require('./routes/visitanteRoute')
+const condominioRoutes = require('./routes/condominioRoute')
+const unidadeRoutes = require('./routes/unidadeRoute')
 
 const { swaggerUi, specs } = require('./swagger')
 
@@ -17,6 +19,8 @@ app.use(express.json())
 app.use(routes)
 app.use('/acesso', acessoRoutes)
 app.use('/visitantes', visitanteRoutes)
+app.use('/condominios', condominioRoutes)
+app.use('/unidades', unidadeRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 const PORT = process.env.PORT || 3000

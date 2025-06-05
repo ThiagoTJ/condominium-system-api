@@ -7,7 +7,8 @@ const Condominio = sequelize.define('Condominio', {
     allowNull: false, 
   },
   endereco: { 
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
   }
 })
 

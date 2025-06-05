@@ -7,7 +7,8 @@ const Unidade = sequelize.define('Unidade', {
     allowNull: false, 
   },
   bloco: { 
-    type: DataTypes.STRING 
+    type: DataTypes.STRING,
+    allowNull: true,
   }
 })
 

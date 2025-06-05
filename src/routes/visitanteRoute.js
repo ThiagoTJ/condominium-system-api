@@ -2,7 +2,7 @@
  * @swagger
  * tags:
  *   name: Visitantes
- *   description: Gerenciamento de visitantes
+ *   description: Endpoints para gerenciamento de visitantes
  */
 
 /**
