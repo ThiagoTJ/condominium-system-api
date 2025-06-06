@@ -20,7 +20,7 @@ API RESTful desenvolvida como parte de um desafio técnico para gerenciar o flux
 - [x] `PUT /unidades/{id}`: Atualizar dados de uma unidade.
 - [x] `DELETE /unidades/{id}`: Remover uma unidade específica.
 
-### ✅ Controle de Acesso
+### ✅ Acessos
 - [x] `POST /acesso/entrada`: Liberar entrada de um visitante em uma unidade de um condomínio.
 - [x] `PATCH /acesso/saida/{id}`: Registrar saída de visitante.
 - [x] `GET /acesso/unidades/{unidadeId}`: Lista movimentação por unidade.
@@ -56,3 +56,85 @@ npm run dev
 ### ✅ Swagger Documentation
 - [x] Documentação interativa disponível em:  
   👉 [`/api-docs`](http://localhost:3000/api-docs)
+
+## 🧭 Guia de Uso da API (Fluxo Recomendado)
+
+Esta API segue uma lógica de relacionamento entre entidades: **Condomínios**, **Unidades**, **Visitantes** e **Controle de Acesso**. Utilize os endpoints na ordem abaixo para garantir a consistência dos dados e a funcionalidade completa da aplicação.
+
+---
+
+### 1️⃣ Cadastro e Gerenciamento de Condomínios
+
+- 📥 **Criar condomínio**  
+  `POST /condominios`
+
+- 📋 **Listar todos os condomínios**  
+  `GET /condominios`
+
+- ✏️ **Atualizar um condomínio** - ( se necessário )
+
+  `PUT /condominios/{id}`
+
+- ❌ **Excluir um condomínio** - ( se necessário )
+
+  `DELETE /condominios/{id}`
+
+> Após esta etapa, você terá o `condominioId` necessário para o relacionamento com unidades.
+
+---
+
+### 2️⃣ Cadastro e Gerenciamento de Unidades
+
+- 📥 **Criar unidade** (relacionada ao `condominioId`)  
+  `POST /unidades`
+
+- 📋 **Listar unidades de um condomínio específico**  
+  `GET /condominios/{id}/unidades`
+
+- ✏️ **Atualizar uma unidade** - ( se necessário )
+
+  `PUT /unidades/{id}`
+
+- ❌ **Excluir uma unidade** - ( se necessário )
+
+  `DELETE /unidades/{id}`
+
+> Isso gera o `unidadeId`, essencial para vincular acessos.
+
+---
+
+### 3️⃣ Cadastro e Gerenciamento de Visitantes
+
+- 📥 **Cadastrar visitante**  
+  `POST /visitantes`
+
+- 📋 **Listar todos os visitantes**  
+  `GET /visitantes`
+
+- ✏️ **Atualizar um visitante** - ( se necessário )
+
+  `PUT /visitantes/{id}`
+
+- ❌ **Excluir um visitante** - ( se necessário )
+
+  `DELETE /visitantes/{id}`
+
+> Esta etapa gera o `visitanteId`, utilizado na liberação de acessos.
+
+---
+
+### 4️⃣ Controle de Acesso
+
+- ✅ **Liberar entrada de visitante**  
+  `POST /acesso/entrada`  
+  **Requer:** `visitanteId`, `condominioId`, `unidadeId`  
+  O horário de entrada é registrado automaticamente.
+
+- 📄 **Listar acessos por unidade**  
+  `GET acesso/unidades/{id}`  
+  Ideal para rastrear visitantes ativos ou históricos.
+
+- 🚶‍♂️ **Registrar saída de visitante**  
+  `PATCH /acesso/saida/{visitanteId}`  
+  Atualiza o registro com a hora de saída.
+---
